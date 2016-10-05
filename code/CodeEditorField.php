@@ -3,7 +3,8 @@
 use SilverStripe\View\Requirements;
 use SilverStripe\Forms\TextareaField;
 
-class CodeEditorField extends TextareaField {
+class CodeEditorField extends TextareaField 
+{
 
 	private static $allowed_actions = array (
 		'iframe'
@@ -34,7 +35,8 @@ class CodeEditorField extends TextareaField {
 	 */
 	protected $rows = 8;
 
-	public function getAttributes() {
+    public function getAttributes()
+    {
 		return array_merge(
 			parent::getAttributes(),
 			array(
@@ -45,8 +47,8 @@ class CodeEditorField extends TextareaField {
 		);
 	}
 
-	function Field($properties = array()) {
-
+    public function Field($properties = array())
+    {
 		$acePath = $this->getAcePath();
 
 		Requirements::javascript($acePath . "ace.js");
@@ -59,25 +61,30 @@ class CodeEditorField extends TextareaField {
 		return parent::Field($properties);
 	}
 
-	function setMode($mode) {
+    public function setMode($mode)
+    {
 		$this->mode = $mode;
 		return $this;
 	}
 	
-	function getMode() {
+    public function getMode()
+    {
 		return $this->mode ? $this->mode : $this->config()->get('default_mode');
 	}
 
-	function setTheme($theme) {
+    public function setTheme($theme)
+    {
 		$this->theme = $theme;
 		return $this;
 	}
 	
-	function getTheme() {
+    public function getTheme()
+    {
 		return $this->theme ? $this->theme : $this->config()->get('default_theme');
 	}
 
-	function getAcePath() {
+    public function getAcePath()
+    {
 		return basename(dirname(__DIR__)) . '/thirdparty/ace/src-noconflict/';
 	}
 }

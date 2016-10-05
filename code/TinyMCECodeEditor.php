@@ -8,15 +8,16 @@ use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\Form;
 use SilverStripe\Control\Controller;
 
-class TinyMCECodeEditor extends Controller {
+class TinyMCECodeEditor extends Controller 
+{
 
 	public static $allowed_actions = array (
 		'PopupForm'
 	);
 
 
-	function PopupForm() {
-		
+    public function PopupForm()
+    {
 		$form = new Form(
 			$this,
 			"{$this->name}/PopupForm", 
@@ -36,8 +37,7 @@ class TinyMCECodeEditor extends Controller {
 			new FieldList(
 				ResetFormAction::create('cancel', 'Cancel')
 					->addExtraClass('ss-ui-action-destructive')
-					->setUseButtonTag(true)
-				,
+                    ->setUseButtonTag(true),
 				FormAction::create('update', 'Update')
 					->addExtraClass('ss-ui-action-constructive')
 					->setAttribute('data-icon', 'accept')
@@ -57,7 +57,5 @@ class TinyMCECodeEditor extends Controller {
 	//	$this->extend('updateLinkForm', $form);
 		
 		return $form;
-
 	}
-
 }
