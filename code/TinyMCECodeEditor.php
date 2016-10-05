@@ -1,5 +1,13 @@
 <?php
 
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\CompositeField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\ResetFormAction;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\Form;
+use SilverStripe\Control\Controller;
+
 class TinyMCECodeEditor extends Controller {
 
 	public static $allowed_actions = array (

@@ -1,5 +1,8 @@
 <?php
 
+use SilverStripe\View\Requirements;
+use SilverStripe\Forms\TextareaField;
+
 class CodeEditorField extends TextareaField {
 
 	private static $allowed_actions = array (
