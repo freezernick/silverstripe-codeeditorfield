@@ -18,14 +18,34 @@ class CodeEditorField extends TextareaField
     /**
      * @var string default_theme
      */
-    private static $default_theme;
+	private static $default_theme = null;
 
     /**
+	 * @var string default_dark_theme
+	 */
+	private static $default_dark_theme = 'monokai';
+	
+	/**
+	 * @var string default_light_theme
+	 */
+	private static $default_light_theme = 'github';
+	
+	/**
      * @var string mode
      */
     protected $mode;
 
     /**
+	 * @var string dark_theme
+	 */
+	protected $dark_theme;
+	
+	/**
+	 * @var string light_theme
+	 */
+	protected $light_theme;
+	
+	/**
      * @var string theme
      */
     protected $theme;
@@ -42,7 +62,9 @@ class CodeEditorField extends TextareaField
             array(
                 'data-mode' => $this->getMode(),
                 'data-ace-path' => $this->getAcePath(),
-                'data-theme' => $this->getTheme()
+				'data-theme' => $this->getTheme(),
+				'data-dark' => $this->getDarkTheme(),
+				'data-light' => $this->getLightTheme()
             )
         );
     }
@@ -53,8 +75,6 @@ class CodeEditorField extends TextareaField
 
         Requirements::javascript($acePath . "ace.js");
         Requirements::javascript($acePath . "mode-" . $this->getMode() . ".js");
-    //	Requirements::javascript($acePath . "worker-" . $this->getMode() . ".js");
-
         Requirements::javascript("codeeditorfield/javascript/CodeEditorField.js");
         Requirements::css("codeeditorfield/css/CodeEditorField.css");
 
@@ -80,11 +100,26 @@ class CodeEditorField extends TextareaField
 
     public function getTheme()
     {
-        return $this->theme ? $this->theme : $this->config()->get('default_theme');
-    }
+		if ($this->getDefaultTheme()){
+			return $this->theme ? $this->theme : $this->config()->get('default_theme');
+		} else {
+			return $this->theme ? $this->theme : $this->config()->get('default_dark_theme');
+		}
+	}
 
-    public function getAcePath()
-    {
+	public function getDefaultTheme() {
+		return $this->config()->get('default_theme');
+	}
+
+	public function getDarkTheme() {
+		return $this->dark_theme ? $this->dark_theme : $this->config()->get('default_dark_theme');
+	}
+
+	public function getLightTheme() {
+		return $this->light_theme ? $this->light_theme : $this->config()->get('default_light_theme');
+	}
+
+	public function getAcePath() {
         return basename(dirname(__DIR__)) . '/thirdparty/ace/src-noconflict/';
     }
 }
