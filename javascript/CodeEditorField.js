@@ -36,6 +36,7 @@
                 editor.session.setWrapLimitRange(null, null);
                 if (this.data('wrap') == 1) {
                     editor.session.setUseWrapMode(true);
+                    this.getWordWrapEl().addClass('active');
                 }
 
                 // set the mode (ie syntax highlighting)

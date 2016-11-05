@@ -32,6 +32,9 @@
     border: 1px solid #B3B3B3;
     box-shadow: 0 0 5px #B3B3B3 inset;
 }
+.codeeditor .ss-ui-button.active .ui-button-text {
+    color: white;
+}
 
 .field.checkbox.stacked {
     padding-left:0;
