@@ -34,6 +34,9 @@
                 editor.getSession().setTabSize(2);
                 editor.setShowPrintMargin(false);
                 editor.session.setWrapLimitRange(null, null);
+                if (this.data('wrap') == 1) {
+                    editor.session.setUseWrapMode(true);
+                }
 
                 // set the mode (ie syntax highlighting)
                 editor.getSession().setMode('ace/mode/' + this.data('mode'));
