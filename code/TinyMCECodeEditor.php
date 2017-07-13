@@ -11,7 +11,7 @@ use SilverStripe\Control\Controller;
 class TinyMCECodeEditor extends Controller
 {
 
-    public static $allowed_actions = array (
+    private static $allowed_actions = array (
         'PopupForm'
     );
 
