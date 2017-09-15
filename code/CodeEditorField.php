@@ -139,4 +139,14 @@ class CodeEditorField extends TextareaField
     public function getAcePath() {
         return basename(dirname(__DIR__)) . '/thirdparty/ace/src-noconflict/';
     }
+
+    /**
+     * Returns a readonly version of this field
+     */
+    public function performReadonlyTransformation()
+    {
+        $field = new CodeEditorField($this->name, $this->title, $this->value);
+        $field->setReadonly(true);
+        return $field;
+    }
 }
