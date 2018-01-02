@@ -4,7 +4,7 @@
 
 
     <label class="btn btn-secondary tool-button ace-word-wrap-button">
-        <input type='checkbox' />
+        <input id='{$ID}_Ace_word_wrap' type='checkbox' />
         Word wrap
     </label>
 
