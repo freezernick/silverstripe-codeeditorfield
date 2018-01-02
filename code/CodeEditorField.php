@@ -2,7 +2,6 @@
 
 namespace NathanCox\CodeEditorField;
 
-use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms;
 use SilverStripe\View\Requirements;
 
@@ -68,9 +67,7 @@ class CodeEditorField extends Forms\TextareaField {
             parent::getAttributes(),
             array(
                 'data-mode' => $this->getMode(),
-                'data-ace-path' => ModuleResourceLoader::singleton()->resolvePath(
-                    'nathancox/codeeditorfield: /thirdparty/ace/src-min-noconflict'
-                ),
+                'data-ace-path' => '/resources/nathancox/codeeditorfield/thirdparty/ace/src-min-noconflict',
                 'data-theme' => $this->getTheme(),
                 'data-dark' => $this->getDarkTheme(),
                 'data-light' => $this->getLightTheme(),
