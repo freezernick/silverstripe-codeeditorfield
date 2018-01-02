@@ -2,6 +2,7 @@
 
 namespace NathanCox\CodeEditorField;
 
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms;
 use SilverStripe\View\Requirements;
 
@@ -67,7 +68,9 @@ class CodeEditorField extends Forms\TextareaField {
             parent::getAttributes(),
             array(
                 'data-mode' => $this->getMode(),
-                'data-ace-path' => $this->getAcePath(),
+                'data-ace-path' => ModuleResourceLoader::singleton()->resolvePath(
+                    'nathancox/codeeditorfield: /thirdparty/ace/src-min-noconflict'
+                ),
                 'data-theme' => $this->getTheme(),
                 'data-dark' => $this->getDarkTheme(),
                 'data-light' => $this->getLightTheme(),
@@ -78,12 +81,14 @@ class CodeEditorField extends Forms\TextareaField {
 
     public function Field($properties = array())
     {
-        $acePath = $this->getAcePath();
-
-        Requirements::javascript($acePath . "ace.js");
-        Requirements::javascript($acePath . "mode-" . $this->getMode() . ".js");
-        Requirements::javascript(basename(dirname(__DIR__)) . "/client/javascript/CodeEditorField.js");
-        Requirements::css(basename(dirname(__DIR__)) . "/client/css/CodeEditorField.css");
+        Requirements::javascript(
+            'nathancox/codeeditorfield: /thirdparty/ace/src-min-noconflict/ace.js'
+        );
+        Requirements::javascript(
+            'nathancox/codeeditorfield: /thirdparty/ace/src-min-noconflict/mode-' . $this->getMode() . '.js'
+        );
+        Requirements::javascript('nathancox/codeeditorfield: /client/javascript/CodeEditorField.js');
+        Requirements::css('nathancox/codeeditorfield: /client/css/CodeEditorField.css');
 
         return parent::Field($properties);
     }
@@ -135,10 +140,6 @@ class CodeEditorField extends Forms\TextareaField {
 
     public function getLightTheme() {
         return $this->light_theme ? $this->light_theme : $this->config()->get('default_light_theme');
-    }
-
-    public function getAcePath() {
-        return basename(dirname(__DIR__)) . '/thirdparty/ace/src-min-noconflict/';
     }
 
     /**
