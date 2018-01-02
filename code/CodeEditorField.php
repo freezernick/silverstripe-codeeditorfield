@@ -1,31 +1,32 @@
 <?php
 
+namespace NathanCox\CodeEditorField;
+
+use SilverStripe\Forms;
 use SilverStripe\View\Requirements;
-use SilverStripe\Forms\TextareaField;
 
-class CodeEditorField extends TextareaField
-{
-
-    private static $allowed_actions = array (
-        'iframe'
-    );
+class CodeEditorField extends Forms\TextareaField {
 
     /**
+     * @config
      * @var string default_mode
      */
     private static $default_mode = 'html';
 
     /**
+     * @config
      * @var string default_theme
      */
     private static $default_theme = null;
 
     /**
+     * @config
      * @var string default_dark_theme
      */
     private static $default_dark_theme = 'monokai';
 
     /**
+     * @config
      * @var string default_light_theme
      */
     private static $default_light_theme = 'github';
@@ -58,7 +59,7 @@ class CodeEditorField extends TextareaField
     /**
      * @var int Visible number of text lines.
      */
-    protected $rows = 8;
+    protected $rows = 12;
 
     public function getAttributes()
     {
@@ -81,8 +82,8 @@ class CodeEditorField extends TextareaField
 
         Requirements::javascript($acePath . "ace.js");
         Requirements::javascript($acePath . "mode-" . $this->getMode() . ".js");
-        Requirements::javascript("codeeditorfield/javascript/CodeEditorField.js");
-        Requirements::css("codeeditorfield/css/CodeEditorField.css");
+        Requirements::javascript(basename(dirname(__DIR__)) . "/client/javascript/CodeEditorField.js");
+        Requirements::css(basename(dirname(__DIR__)) . "/client/css/CodeEditorField.css");
 
         return parent::Field($properties);
     }
@@ -117,7 +118,7 @@ class CodeEditorField extends TextareaField
 
     public function getTheme()
     {
-        if ($this->getDefaultTheme()){
+        if ($this->getDefaultTheme()) {
             return $this->theme ? $this->theme : $this->config()->get('default_theme');
         } else {
             return $this->theme ? $this->theme : $this->config()->get('default_dark_theme');
@@ -137,7 +138,7 @@ class CodeEditorField extends TextareaField
     }
 
     public function getAcePath() {
-        return basename(dirname(__DIR__)) . '/thirdparty/ace/src-noconflict/';
+        return basename(dirname(__DIR__)) . '/thirdparty/ace/src-min-noconflict/';
     }
 
     /**
