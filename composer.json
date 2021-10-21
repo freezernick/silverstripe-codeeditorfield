@@ -12,8 +12,13 @@
         "issues": "https://github.com/nathancox/silverstripe-codeeditorfield/issues"
     },
     "require": {
-        "silverstripe/admin": "~2"
+        "silverstripe/admin": "^1"
     },
+	"autoload": {
+		"psr-4": {
+			"NathanCox\\CodeEditorField\\": "code/"
+		}
+	},
     "extra": {
         "screenshots": [
             "http://static.flyingmonkey.co.nz/github/silverstripe-codeeditorfield/codeeditorfield-1.png"
