@@ -3,6 +3,7 @@
 namespace NathanCox\CodeEditorField;
 
 use SilverStripe\Forms;
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\View\Requirements;
 
 class CodeEditorField extends Forms\TextareaField {
@@ -67,7 +68,9 @@ class CodeEditorField extends Forms\TextareaField {
             parent::getAttributes(),
             array(
                 'data-mode' => $this->getMode(),
-                'data-ace-path' => '/resources/nathancox/codeeditorfield/thirdparty/ace/src-min-noconflict',
+                'data-ace-path' => ModuleResourceLoader::resourceURL(
+                    'nathancox/codeeditorfield: thirdparty/ace/src-min-noconflict'
+                ),
                 'data-theme' => $this->getTheme(),
                 'data-dark' => $this->getDarkTheme(),
                 'data-light' => $this->getLightTheme(),
@@ -79,13 +82,13 @@ class CodeEditorField extends Forms\TextareaField {
     public function Field($properties = array())
     {
         Requirements::javascript(
-            'nathancox/codeeditorfield: /thirdparty/ace/src-min-noconflict/ace.js'
+            'nathancox/codeeditorfield: thirdparty/ace/src-min-noconflict/ace.js'
         );
         Requirements::javascript(
-            'nathancox/codeeditorfield: /thirdparty/ace/src-min-noconflict/mode-' . $this->getMode() . '.js'
+            'nathancox/codeeditorfield: thirdparty/ace/src-min-noconflict/mode-' . $this->getMode() . '.js'
         );
-        Requirements::javascript('nathancox/codeeditorfield: /client/javascript/CodeEditorField.js');
-        Requirements::css('nathancox/codeeditorfield: /client/css/CodeEditorField.css');
+        Requirements::javascript('nathancox/codeeditorfield: client/javascript/CodeEditorField.js');
+        Requirements::css('nathancox/codeeditorfield: client/css/CodeEditorField.css');
 
         return parent::Field($properties);
     }
