@@ -134,53 +134,6 @@
             dialog.open()
 
             console.log(dialog)
-
-
-
-
-
-
-
-
-
-/*
-        var self = this
-
-        var $dialog = $('.htmleditorfield-acedialog')
-
-        if ($dialog.length) {
-          var content = tinyMCE.activeEditor.getContent()
-          var ed = $($('textarea.codeeditor', $dialog).first().getEditor().getSession().setValue(content))
-
-        //  ed.val(content);
-
-          $dialog.getForm().setElement(this)
-
-          $dialog.open()
-        } else {
-          $dialog = $('<div class="htmleditorfield-dialog htmleditorfield-acedialog">')
-          $('body').append($dialog);
-
-          var url = 'TinyMCECodeEditor/PopupForm/forTemplate'
-
-          $.ajax({
-            url: url,
-            complete: function() {
-              $dialog.removeClass('loading')
-            },
-            success: function(html) {
-              $dialog.html(html)
-              var content = tinyMCE.activeEditor.getContent()
-              var ed = $($('textarea.codeeditor', $dialog).first())
-
-              ed.val(content)
-
-              $dialog.getForm().setElement(self)
-              $dialog.trigger('ssdialogopen')
-            }
-          })
-        }
-        */
       }
     })
 
